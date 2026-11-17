@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre Order Masakan Dapur Mama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-amber-50 text-gray-800 min-h-screen pb-12">
+
+    <!-- Header Banner -->
+    <header class="w-full bg-amber-600 shadow-md">
+        <div class="max-w-3xl mx-auto">
+            <img src="Gemini_Generated_Image_70uzto70uzto70uz.jpg" alt="Dapur Mama Header" class="w-full h-auto object-cover max-h-72 shadow-inner">
+        </div>
+        <div class="bg-amber-800 text-white py-4 px-4 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Pre Order Masakan Dapur Mama</h1>
+            <p class="text-xs md:text-sm text-amber-200 mt-1 uppercase font-medium">Specializing in Cireng Isi Ayam Suwir, Dimsum Goreng Isi Keju, & Cilok Bumbu Kacang</p>
+        </div>
+    </header>
+
+    <!-- Formulir Pemesanan Customer -->
+    <main class="max-w-3xl mx-auto mt-6 px-4">
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-amber-200">
+            <form id="orderForm" onsubmit="handleOrder(event)">
+                
+                <!-- Data Pemesan -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Pemesan <span class="text-red-500">*</span></label>
+                        <input type="text" id="custName" required placeholder="Masukkan nama lengkap" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">No. WhatsApp <span class="text-red-500">*</span></label>
+                        <input type="tel" id="custPhone" required placeholder="Contoh: 08123456789" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Delivery <span class="text-red-500">*</span></label>
+                    <select id="deliveryMethod" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white">
+                        <option value="" disabled selected>-- Pilih Metode Pengiriman --</option>
+                        <option value="Diantar">Diantar</option>
+                        <option value="Diambil">Diambil</option>
+                    </select>
+                </div>
+
+                <hr class="border-amber-200 my-6">
+
+                <!-- Daftar Menu -->
+                <h3 class="text-lg font-bold text-amber-900 mb-4">Daftar Menu Makanan</h3>
+                
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">1. Cireng Isi Ayam Suwir Original (Gurih)</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 3.000 /pcs</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="3000" data-name="Cireng Isi Ayam Suwir Original (Gurih)" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">2. Cireng Isi Ayam Suwir Pedas</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 3.000 /pcs</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="3000" data-name="Cireng Isi Ayam Suwir Pedas" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">3. Cireng Isi Full Keju Lumer</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 3.000 /pcs</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="3000" data-name="Cireng Isi Full Keju Lumer" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">4. Cireng Isi Ayam Suwir Pedas Keju Lumer</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 4.000 /pcs</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="4000" data-name="Cireng Isi Ayam Suwir Pedas Keju Lumer" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">5. Dimsum Goreng Isi Keju Lumer</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 25.000 /box isi 10</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="25000" data-name="Dimsum Goreng Isi Keju Lumer" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">6. Dimsum Goreng Isi Keju Lumer & Chili Oil</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 27.000 /box isi 10</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="27000" data-name="Dimsum Goreng Isi Keju Lumer & Chili Oil" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                        <div class="mb-2 sm:mb-0">
+                            <span class="font-semibold text-gray-800">7. Cilok Bumbu Kacang</span>
+                            <p class="text-xs text-amber-700 font-medium">Rp. 15.000 /box</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+                            <input type="text" inputmode="numeric" value="0" data-price="15000" data-name="Cilok Bumbu Kacang" oninput="validateNumber(this)" class="qty-input w-20 px-3 py-1 border border-gray-300 rounded-md text-center focus:ring-amber-500 focus:outline-none">
+                            <span class="text-sm font-bold text-gray-700 w-28 text-right subtotal-text">Rp 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grand Total Box -->
+                <div class="mt-6 bg-amber-600 text-white p-4 rounded-xl flex justify-between items-center shadow">
+                    <span class="text-base font-semibold">Total Pembayaran:</span>
+                    <span id="grandTotalText" class="text-xl font-bold">Rp 0</span>
+                </div>
+
+                <!-- Payment Info -->
+                <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200 text-sm">
+                    <p class="font-semibold text-amber-900 mb-1">Informasi Pembayaran:</p>
+                    <p class="text-gray-700 mb-2">Terima pembayaran Tunai atau Transfer ke rekening:</p>
+                    <div class="flex items-center justify-between bg-white p-3 rounded-lg border border-amber-200">
+                        <div>
+                            <p class="font-bold text-gray-900">BCA: 4930339879</p>
+                            <p class="text-xs text-gray-600">a.n Sutri Munawaroh</p>
+                        </div>
+                        <button type="button" onclick="copyRekening()" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium rounded-md transition shadow-sm">Salin No. Rek</button>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full mt-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center">
+                    Pesan Sekarang & Kirim ke WhatsApp
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/library/d/1LYcoKe_W74FuaPeCR2AKRotnDl5BjU1WP9p5BV4_aJrIbRCML7z3Rq0S/1";
+
+        function validateNumber(input) {
+            // Hanya mengizinkan angka 0-9 (menghapus huruf dan simbol)
+            input.value = input.value.replace(/[^0-9]/g, '');
+            if (input.value.length > 1 && input.value.startsWith('0')) {
+                input.value = parseInt(input.value, 10);
+            }
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const inputs = document.querySelectorAll('.qty-input');
+            let grandTotal = 0;
+
+            inputs.forEach((input, index) => {
+                let qty = parseInt(input.value) || 0;
+                let price = parseInt(input.getAttribute('data-price')) || 0;
+                let subtotal = qty * price;
+                grandTotal += subtotal;
+
+                document.querySelectorAll('.subtotal-text')[index].innerText = formatRupiah(subtotal);
+            });
+
+            document.getElementById('grandTotalText').innerText = formatRupiah(grandTotal);
+        }
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+        }
+
+        function copyRekening() {
+            navigator.clipboard.writeText("4930339879");
+            alert("Nomor rekening BCA 4930339879 berhasil disalin!");
+        }
+
+        async function handleOrder(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const delivery = document.getElementById('deliveryMethod').value;
+            const inputs = document.querySelectorAll('.qty-input');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if(!name || !phone || !delivery) {
+                alert("Harap lengkapi Nama, No. WhatsApp, dan pilihan Delivery.");
+                return;
+            }
+
+            let quantities = [];
+            let grandTotal = 0;
+            let summaryText = `*PRE ORDER MASAKAN DAPUR MAMA*\n\n`;
+            summaryText += `*Nama Pemesan:* ${name}\n`;
+            summaryText += `*No. WhatsApp:* ${phone}\n`;
+            summaryText += `*Delivery:* ${delivery}\n\n`;
+            summaryText += `*Rincian Pesanan:*\n`;
+
+            inputs.forEach(input => {
+                let qty = parseInt(input.value) || 0;
+                quantities.push(qty);
+                if(qty > 0) {
+                    let price = parseInt(input.getAttribute('data-price'));
+                    let itemName = input.getAttribute('data-name');
+                    let subtotal = qty * price;
+                    grandTotal += subtotal;
+                    summaryText += `- ${itemName} (${qty}x) = ${formatRupiah(subtotal)}\n`;
+                }
+            });
+
+            if(grandTotal === 0) {
+                alert("Silakan masukkan jumlah pesanan minimal 1 produk.");
+                return;
+            }
+
+            summaryText += `\n*Total Pembayaran: ${formatRupiah(grandTotal)}*\n`;
+            summaryText += `Pembayaran: Tunai atau Transfer ke Rekening BCA 4930339879 a.n Sutri Munawaroh.`;
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Memproses Pesanan...";
+
+            // Payload terstruktur untuk Google Spreadsheet (Kolom A - K, Kolom L dihitung otomatis oleh rumus Sheet)
+            const payload = {
+                waktu: new Date().toLocaleString('id-ID'),
+                nama: name,
+                whatsapp: "'" + phone, // Tanda kutip tunggal agar angka 0 di depan tidak hilang di Sheets
+                delivery: delivery,
+                item1: quantities[0],
+                item2: quantities[1],
+                item3: quantities[2],
+                item4: quantities[3],
+                item5: quantities[4],
+                item6: quantities[5],
+                item7: quantities[6]
+            };
+
+            // Kirim diam-diam ke Google Spreadsheet di Google Drive hamdanih85@gmail.com
+            if(GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith("https://")) {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.error("Gagal sinkronisasi ke Sheets:", err);
+                }
+            }
+
+            // Buka WhatsApp langsung ke 08811105517
+            const waUrl = `https://wa.me/628811105517?text=${encodeURIComponent(summaryText)}`;
+            window.open(waUrl, '_blank');
+
+            // Reset formulir
+            document.getElementById('orderForm').reset();
+            calculateTotal();
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Pesan Sekarang & Kirim ke WhatsApp";
+        }
+    </script>
+</body>
+</html>
